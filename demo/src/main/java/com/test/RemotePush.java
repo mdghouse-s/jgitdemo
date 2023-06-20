@@ -35,26 +35,9 @@ public class RemotePush {
         }
     }
 
-    //method pushAuth to push files to remote repo
-    public static void pushAuth(String path, String remoteUrl) {
-        // log info
-        logger.info("Pushing files to remote repo");
-        // push files to remote repo
-        try {
-            Git git = Git.open(new File(path));
-            git.push().setRemote(remoteUrl).call();
-            // log info
-            logger.info("Pushed files to remote repo");
-        } catch (IOException | GitAPIException e) {
-            logger.error("Exception occurred while pushing files to remote repo", e);
-        }
-    }
-
-    
+    //method pushAuth to push files to remote repo    
     public static void main(String[] args) {
-        //test pushAuth method
-        pushAuth("D:\\00_Trainings\\CTS\\CoPilot\\prac\\testgit", "https://github.com/mdghouse-s/jgitdemo.git");
-        System.out.println("Done");
+
     
 
     }
