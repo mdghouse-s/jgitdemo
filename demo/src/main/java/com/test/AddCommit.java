@@ -40,10 +40,11 @@ public class AddCommit {
         try {
             Git git = Git.open(new File(path));
             RevCommit call = git.commit().setMessage(message).call();
-
+            
+            ;
             
             // log info
-            logger.info("Committed files");
+            logger.info("Committed files with commit Id {}", call.getId().getName());
             // Get the status of the repository
 
 
