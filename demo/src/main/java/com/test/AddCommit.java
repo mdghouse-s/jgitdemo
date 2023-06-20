@@ -26,6 +26,7 @@ public class AddCommit {
             git.add().addFilepattern(".").call();
             // log info
             logger.info("Added files to index");
+            getStatus(path);
         } catch (IOException | GitAPIException e) {
             logger.error("Exception occurred while adding files to index", e);
         }
@@ -44,6 +45,20 @@ public class AddCommit {
             // log info
             logger.info("Committed files");
             // Get the status of the repository
+
+
+        } catch (IOException | GitAPIException e) {
+            logger.error("Exception occurred while committing files", e);
+        }
+    }
+
+    //add a method to get the status of the repository
+    public static void getStatus(String path) {
+        // log info
+        logger.info("Getting status of the repository");
+        // Get the status of the repository
+        try {
+            Git git = Git.open(new File(path));
             Status status = git.status().call();
 
             // Print the status information
@@ -59,8 +74,10 @@ public class AddCommit {
             System.out.println("\nChanged Files:");
             status.getChanged().forEach(System.out::println);
 
+            // log info
+            logger.info("Got status of the repository");
         } catch (IOException | GitAPIException e) {
-            logger.error("Exception occurred while committing files", e);
+            logger.error("Exception occurred while getting status of the repository", e);
         }
     }
 
@@ -70,10 +87,7 @@ public class AddCommit {
         logger.info("Adding files to index");
         // call addFilesToIndex method
         addFilesToIndex("D:\\00_Trainings\\CTS\\CoPilot\\prac\\testgit");
-        // log info
-        logger.info("Added files to index");
-        // log info
-        logger.info("Committing files");
+
         // call commit method
         commit("D:\\00_Trainings\\CTS\\CoPilot\\prac\\testgit", "Committing files");
         // log info
